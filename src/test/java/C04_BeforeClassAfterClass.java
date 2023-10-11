@@ -42,6 +42,6 @@ public class C04_BeforeClassAfterClass {
         System.out.println("Test 02 çalıştı.");
 
     }
-
+//-> 5 test methodu,1 Before Class, 1 After Class,1 After ve 1 Before Methodum var , cevap:17
 
 }

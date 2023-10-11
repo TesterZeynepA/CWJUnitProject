@@ -74,16 +74,37 @@ public class C05_AssertionMethods {
 
     @Test
     public void assertArrayEquals(){
-      //2 parametre alır ve verilen arraylerin uzunlukları ve aynı indexteki elemanları aynı olmalıdır.
+        //2 parametre alir ve verilen arraylerin uzunluklari ve ayni indexdeki elemanlari ayni olmalidir
 
         int[] arr1 ={0,1,2,3,4}, arr2={0,1,2,3,4};
         Assert.assertArrayEquals(arr1,arr2);
 
         char[] actualArr = {'h','o','m','e'};
-        char[] expectedArr = {'h','o','m','e'};
+        char[] expectedArr = {'H','O','M','E'};
 
-        Assert.assertArrayEquals("iki array esit değilse fail olacak", expectedArr,actualArr);//failed
+        //Assert.assertArrayEquals("iki array esit değilse fail olacak", expectedArr,actualArr);//failed
 
     }
+
+    @Test
+    public void assertEqualsWithMessage(){
+
+        Assert.assertEquals("değerler aynı çıkmadı, 85 105 arası satırları kontrol et",5,10);
+
+    }
+     /*
+    import static org. junit. Assert. *;
+    assertSame
+
+     import org. junit. Assert;
+     Assert.assertSame
+
+     Assert sınıfı için statik içe aktarmanın avantajı şudur:
+
+        Assert sınıf adının gereksiz kullanımını Assert yöntemleriyle ortadan kaldırmak için.
+        Zaman kazandırır.
+        Yazmayı daha iyi hale getirir ve
+        Kodun okunabilirliğini artırır.
+     */
 
 }

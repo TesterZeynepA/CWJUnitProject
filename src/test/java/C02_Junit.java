@@ -1,4 +1,4 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,7 +25,7 @@ public class C02_Junit {
 
     public void test01(){
 
-        WebDriverManager.chromiumdriver().setup();
+       // WebDriverManager.chromiumdriver().setup();
 
         WebDriver driver =  new ChromeDriver();
 
@@ -39,7 +39,7 @@ public class C02_Junit {
 
     public void test02(){
 
-        WebDriverManager.chromiumdriver().setup();
+        //WebDriverManager.chromiumdriver().setup();
 
         WebDriver driver =  new ChromeDriver();
 
@@ -54,7 +54,7 @@ public class C02_Junit {
 
     public void test03(){
 
-        WebDriverManager.chromiumdriver().setup();
+       // WebDriverManager.chromiumdriver().setup();
 
         WebDriver driver =  new ChromeDriver();
 

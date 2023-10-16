@@ -1,61 +1,77 @@
 package Homework;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.time.Duration;
 
 public class Task08 {
 
 
-/**https://www.teknosa.com/ adresine gidiniz.
- Arama çubuğuna ‘’oppo’’ yazıp ENTER tıklayınız.
- Sonuç sayısını yazdırınız.
- Çıkan ilk ürüne tıklayınız.
- Sepete ekleyiniz.
- Sepetime gite tıklayınız.
- Konsolda "Sipariş Özeti" WebElement’inin text’ini yazdırınız.
- Alışverişi tamamlayınız.
- Son olarak "Teknosa’ya Hoş Geldiniz" WebElement’inin text’ini yazdırınız.
- Driver’ı kapatınız. */
-static WebDriver driver;
+///Navigate to website  https://testpages.herokuapp.com/styled/index.html
+//Under the Examples
+//Click on Locators - Find By Playground Test Page
+//Print the URL
+//Navigate back
+//Print the URL
+//Click on WebDriver Example Page
+//Print the URL
+//Enter value  20 and Enter to "Enter Some Numbers inputBox"
+//And then verify 'two, zero' message is displayed
+//Close driver.
+
+    static WebDriver driver;
 
     @BeforeClass
     public static void setUp() throws InterruptedException {
 
         driver= new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://automationpractice.com/index.php");
 
-        Thread.sleep(3000);
+        driver.manage().window().maximize();
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
+        driver.navigate().to("https://testpages.herokuapp.com/styled/index.html");
 
     }
 
     @Test
-    public void xPathAbsolute() throws InterruptedException {
+    public void webElementMethods1() throws InterruptedException {
 
-        WebElement userNameBoxForAbsolute = driver.findElement(By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input"));
+        driver.findElement(By.xpath("//a[@id = 'findbytest']")).click();
 
-        userNameBoxForAbsolute.click();
+        // full xpath :  /html/body/div[1]/ul[1]/li[3]/a
 
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
+        System.out.println("driver.getCurrentUrl() = " + driver.getCurrentUrl());
 
-        WebElement passwordBoxForAbsolute = driver.findElement(By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[2]/div/div[2]/input"));
+        driver.navigate().back();
 
-        passwordBoxForAbsolute.click();
+        Thread.sleep(2000);
 
-        Thread.sleep(3000);
+        System.out.println("driver.getCurrentUrl() = " + driver.getCurrentUrl());
 
-        WebElement loginButtonForAbsolute = driver.findElement(By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button"));
+        driver.findElement(By.xpath("//a[@id='webdriverexamplepage']")).click();
 
-        loginButtonForAbsolute.click();
+        Thread.sleep(2000);
 
-        Thread.sleep(3000);
+        System.out.println("driver.getCurrentUrl() = " + driver.getCurrentUrl());
 
+        driver.findElement(By.xpath("//input[@id='numentry']")).sendKeys("20" + Keys.ENTER);
+
+        Thread.sleep(2000);
+
+        boolean verify1 = driver.findElement(By.xpath("//p[@id='message']")).isDisplayed();
+        boolean verify2 = driver.findElement(By.xpath("//*[text()='two, zero']")).isDisplayed();
+        Assert.assertTrue(verify1);
+        Assert.assertTrue(verify2);
 
     }
 
@@ -65,7 +81,6 @@ static WebDriver driver;
 
         driver.close();
     }
-
 
 
 

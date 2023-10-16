@@ -1,3 +1,13 @@
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.time.Duration;
+
 public class C14_DynamicXpath {
     /*
     interview larda dinamik eleman nedir ? ne nasıl bulursunuz ?
@@ -13,16 +23,55 @@ public class C14_DynamicXpath {
     u_ başlıyor
     _f7 bitiyor
     a[id^='u_'][id$='_f7']
+
+
     CSS de
     ^ -> ile başlayan
     $ -> ile biten
     * -> içinde geçen
     cssSelector("input[id^='u_'][id$='_b2']   cssSelector("input[id^='u_'][id$='_Wd']
+
+
     Xpath
     //a[starts-with(@id,'u_')] -> ile başlayan
     //a[ends-with(@id,'_f7')]    -> ile biten
     //a[contains(@id,'u_')]    -> içinde geçen
      */
+
+    static WebDriver driver;
+
+    @BeforeClass
+    public static void setup(){
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.get("https://www.facebook.com/");
+    }
+    @AfterClass
+    public static void tearDown(){
+        driver.close();
+    }//Close driver.
+
+
+    @Test
+    public void test1(){
+
+        WebElement emailBox1 = driver.findElement(By.xpath("//input[contains(@placeholder, 'Telefon')]"));
+        WebElement emailBox2 = driver.findElement(By.xpath("//input[starts-with(@placeholder, 'E-posta')]"));
+
+        emailBox1.sendKeys("abc@gmail.com");
+
+        WebElement passwordBox = driver.findElement(By.xpath("//input[contains(@data-testid, 'pass')]"));
+
+        passwordBox.sendKeys("abc@gmail.com");
+
+       // WebElement girisButton = driver.findElement(By.xpath("//button[starts-with(@id, 'u_')]"));
+       // girisButton.submit();
+
+        WebElement yeniHesap = driver.findElement(By.xpath("//a[starts-with(@id, 'u_')]"));
+        yeniHesap.click();
+    }
+
 
 
 

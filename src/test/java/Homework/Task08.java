@@ -1,5 +1,6 @@
 package Homework;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -58,6 +59,12 @@ static WebDriver driver;
 
     }
 
+
+    @AfterClass
+    public static void tearDown(){
+
+        driver.close();
+    }
 
 
 

@@ -1,5 +1,6 @@
 package Homework;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -8,17 +9,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Task05 {
-   /** Navigate to website https://testpages.herokuapp.com/styled/index.html
-    Under the ORIGINAL CONTENTS
-    Click on Alerts
-    Print the URL
-    Navigate back
-    Print the URL
-    Click on Basic Ajax
-    Print the URL
-    Enter value → 20 and Enter
-    And then verify Submitted Values is displayed open page
-    Close driver. */
+   /** //Navigate to website  https://testpages.herokuapp.com/styled/index.html
+    //Under the Examples
+    //Click on Locators - Find By Playground Test Page
+    //Print the URL
+    //Navigate back
+    //Print the URL
+    //Click on WebDriver Example Page
+    //Print the URL
+    //Enter value  20 and Enter to "Enter Some Numbers inputBox"
+    //And then verify 'two, zero' message is displayed
+    //Close driver. */
 
    static WebDriver driver;
 
@@ -27,7 +28,7 @@ public class Task05 {
 
         driver= new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("http://automationpractice.com/index.php");
+        driver.get("https://testpages.herokuapp.com/styled/index.html");
 
         Thread.sleep(3000);
 
@@ -56,6 +57,12 @@ public class Task05 {
         Thread.sleep(3000);
 
 
+    }
+
+    @AfterClass
+    public static void tearDown(){
+
+        driver.close();
     }
 
 

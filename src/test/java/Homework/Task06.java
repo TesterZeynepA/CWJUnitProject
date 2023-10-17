@@ -8,14 +8,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
+
 public class Task06 {
 
-    /**http://the-internet.herokuapp.com/add_remove_elements/
-     Click on the "Add Element" button 100 times.
-     Write a function that takes a number, and clicks the "Delete" button.
-     Given number of times, and then validates that given number of buttons was deleted.
-     1. Method: createButtons(100)
-     2. Method: DeleteButtonsAndValidate() */
+    /** Google arama sayfasını ziyaret edin,
+     * arama kutusunu bulmak için xpath locator
+     * kullanın ve "Hidden Figures" filmini arayın.
+     * */
 
     static WebDriver driver;
 
@@ -23,35 +23,28 @@ public class Task06 {
      public static void setUp() throws InterruptedException {
 
           driver= new ChromeDriver();
+
           driver.manage().window().maximize();
-          driver.get("http://automationpractice.com/index.php");
+
+          driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
+          driver.get("https://www.google.com/");
 
           Thread.sleep(3000);
 
      }
 
      @Test
-     public void xPathAbsolute() throws InterruptedException {
+     public void test01() throws InterruptedException {
 
-          WebElement userNameBoxForAbsolute = driver.findElement(By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input"));
+          WebElement searchboxRelative = driver.findElement(By.xpath("//textarea[@id = 'APjFqb']"));
+          WebElement searchboxAbsolute = driver.findElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/textarea"));
+          WebElement searchboxDynamic = driver.findElement(By.xpath("//textarea[contains(@id, 'AP')]"));
 
-          userNameBoxForAbsolute.click();
-
-          Thread.sleep(3000);
-
-
-          WebElement passwordBoxForAbsolute = driver.findElement(By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[2]/div/div[2]/input"));
-
-          passwordBoxForAbsolute.click();
+          searchboxDynamic.sendKeys("Hidden Figures");
+          searchboxDynamic.click();
 
           Thread.sleep(3000);
-
-          WebElement loginButtonForAbsolute = driver.findElement(By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button"));
-
-          loginButtonForAbsolute.click();
-
-          Thread.sleep(3000);
-
 
      }
 
@@ -62,6 +55,4 @@ public class Task06 {
         driver.close();
     }
 
-
-
-     }
+}

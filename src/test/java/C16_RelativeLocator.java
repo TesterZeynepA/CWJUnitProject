@@ -45,10 +45,16 @@ static WebDriver driver;
     @Test
     public void logoTest() throws InterruptedException {
 
+        WebElement bestBuyLogo = driver.findElement(RelativeLocator.with(By.tagName("img")).above(By.xpath("//div[contains(text(),'Hello')]")));
+        Assert.assertTrue(bestBuyLogo.isDisplayed());
+
 
     }
     @Test
     public void canadaLinkTest() throws InterruptedException {
+        WebElement canadaLink= driver.findElement(RelativeLocator.with(By.tagName("img")).toLeftOf(By.xpath("(//img[@alt='United States'])[1]")));
+
+        Assert.assertTrue(canadaLink.isDisplayed());
 
     }
 }

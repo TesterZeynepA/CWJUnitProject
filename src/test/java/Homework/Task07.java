@@ -22,45 +22,41 @@ public class Task07 {
   static WebDriver driver;
 
     @BeforeClass
-    public static void setUp() throws InterruptedException {
-
-        driver= new ChromeDriver();
+    public static void setup(){
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("http://www.bestbuy.com");
-
-        Thread.sleep(3000);
-
     }
-
-    @Test
-    public void xPathAbsolute() throws InterruptedException {
-
-        WebElement textRelative = driver.findElement(By.xpath("//div[text()='Hello!']"));
-
-        Thread.sleep(3000);
-
-
-        Assert.assertTrue(driver.findElement(RelativeLocator.with(By.tagName("img")).above(textRelative)).isDisplayed());
-
-        Thread.sleep(3000);
-
-        WebElement loginButtonForAbsolute = driver.findElement(By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button"));
-
-        loginButtonForAbsolute.click();
-
-        Thread.sleep(3000);
-
-
-    }
-
 
     @AfterClass
     public static void tearDown(){
-
         driver.close();
+    }//Close driver.
+
+    @Test
+    public void helloTest() throws InterruptedException {
+
+        WebElement helloHeader = driver.findElement(RelativeLocator.with(By.tagName("div")).below(By.xpath("(//img[@class='logo'])[1]")));
+
+        Assert.assertTrue(helloHeader.isDisplayed());
     }
 
+    @Test
+    public void logoTest() throws InterruptedException {
+
+        WebElement bestBuyLogo = driver.findElement(RelativeLocator.with(By.tagName("img")).above(By.xpath("//div[contains(text(),'Hello')]")));
+        Assert.assertTrue(bestBuyLogo.isDisplayed());
+
+
+    }
+    @Test
+    public void canadaLinkTest() throws InterruptedException {
+        WebElement canadaLink= driver.findElement(RelativeLocator.with(By.tagName("img")).toLeftOf(By.xpath("(//img[@alt='United States'])[1]")));
+
+        Assert.assertTrue(canadaLink.isDisplayed());
+
+    }
 
 
 }

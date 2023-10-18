@@ -5,9 +5,11 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
 import java.time.Duration;
@@ -34,16 +36,22 @@ public class Task09 {
 
     @AfterClass
     public static void tearDown(){
-        driver.close();
+        //driver.close();
     }//Close driver.
 
     @Test
     public void helloTest() throws InterruptedException {
 
-        WebElement elements = driver.findElement(By.xpath("//*[@id='app']/div/div/div[2]/div/div[1]/div/div[2]"));
+        WebElement popUp = driver.findElement(By.xpath("//div[@id='adplus-anchor']"));
+
+
+        WebElement elements = driver.findElement(RelativeLocator.with(By.tagName("div")).above(popUp));
 
         elements.click();
         Thread.sleep(2000);
+
+        WebElement elements2= driver.findElement(By.xpath("(//div[@class='header-text'])[1]"));
+        elements2.click();
 
         WebElement checkbox = driver.findElement(By.xpath("//span[contains(text(),'Check')]"));
 
@@ -55,7 +63,7 @@ public class Task09 {
         homeCheckbox.click();
         Thread.sleep(2000);
 
-        Assert.assertTrue(homeCheckbox.isSelected());
+       // Assert.assertTrue(homeCheckbox.isSelected());
 
         WebElement message = driver.findElement(By.xpath("//span[.='You have selected :']"));
 

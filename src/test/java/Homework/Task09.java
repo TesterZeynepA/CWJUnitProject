@@ -55,7 +55,7 @@ public class Task09 {
         checkbox.click();
         Thread.sleep(2000);
 
-        WebElement homeCheckbox = driver.findElement(By.xpath("//input[@id='tree-node-home']"));
+        WebElement homeCheckbox = driver.findElement(By.xpath("//*[@id='tree-node']/ol/li/span/label/span[1]"));
 
         Assert.assertTrue(homeCheckbox.isEnabled());
 

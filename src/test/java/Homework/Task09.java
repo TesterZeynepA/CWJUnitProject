@@ -4,10 +4,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.locators.RelativeLocator;
@@ -58,12 +55,13 @@ public class Task09 {
         checkbox.click();
         Thread.sleep(2000);
 
-        WebElement homeCheckbox = driver.findElement(By.xpath("//*[@id=\"tree-node\"]/ol/li/span/label/span[1]"));
+        WebElement homeCheckbox = driver.findElement(By.xpath("//input[@id='tree-node-home']"));
 
-        homeCheckbox.click();
+        Assert.assertTrue(homeCheckbox.isEnabled());
+
+       homeCheckbox.click();
+
         Thread.sleep(2000);
-
-       // Assert.assertTrue(homeCheckbox.isSelected());
 
         WebElement message = driver.findElement(By.xpath("//span[.='You have selected :']"));
 

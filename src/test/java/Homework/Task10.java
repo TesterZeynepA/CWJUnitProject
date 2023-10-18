@@ -1,10 +1,12 @@
 package Homework;
 
+import org.checkerframework.checker.units.qual.A;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -30,29 +32,58 @@ public class Task10 {
 
     @AfterClass
     public static void tearDown() {
-        driver.close();
+        //driver.close();
     }
 
     @Test
     public void test() throws InterruptedException {
 
-        WebElement createAccountButton = driver.findElement(By.xpath("//a[starts-with(@id, 'u_')]"));
-
-        createAccountButton.click();
+        WebElement yesRadio = driver.findElement(By.xpath("//input[@id='yesRadio']"));
 
         Thread.sleep(2000);
-        WebElement female = driver.findElement(By.xpath("//input[@value='1']"));
-        WebElement male = driver.findElement(By.xpath("//label[.='Erkek']"));
-        WebElement custom = driver.findElement(By.xpath("//input[@value='-1']"));
 
-        if(!female.isSelected()){
-            female.click();
+        Assert.assertTrue(yesRadio.isEnabled());
+
+        yesRadio.sendKeys(Keys.SPACE);
+
+        WebElement text1 = driver.findElement(By.xpath("//p[@class='mt-3']"));
+
+        text1.getText();
+
+        Assert.assertTrue(yesRadio.isSelected());
+
+        Thread.sleep(2000);
+
+
+        WebElement impressiveRadio = driver.findElement(By.xpath("//input[@id='impressiveRadio']"));
+
+        Thread.sleep(2000);
+
+        impressiveRadio.sendKeys(Keys.SPACE);;
+
+        WebElement text2 = driver.findElement(By.xpath("//p[@class='mt-3']"));
+
+        text2.getText();
+
+        Assert.assertTrue(impressiveRadio.isSelected());
+
+        Thread.sleep(2000);
+
+
+        WebElement noRadio = driver.findElement(By.xpath("//input[@id='noRadio']"));
+
+        Thread.sleep(2000);
+
+        if (noRadio.isEnabled()) {
+
+            noRadio.sendKeys(Keys.SPACE);
+
         }
-        Thread.sleep(3000);
 
-        Assert.assertTrue(female.isSelected());
-        Assert.assertFalse(male.isSelected());
-        Assert.assertTrue(!custom.isSelected());
+
+        Assert.assertFalse(noRadio.isEnabled());
+
+        Thread.sleep(2000);
 
 
 

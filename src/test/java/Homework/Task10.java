@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Task10 {
     /**Homework3
@@ -59,7 +60,7 @@ public class Task10 {
 
         Thread.sleep(2000);
 
-        impressiveRadio.sendKeys(Keys.SPACE);;
+        impressiveRadio.sendKeys(Keys.SPACE);
 
         WebElement text2 = driver.findElement(By.xpath("//p[@class='mt-3']"));
 
@@ -85,7 +86,48 @@ public class Task10 {
 
         Thread.sleep(2000);
 
+    }
+//2. yol
+    @Test
+    public void test2() {
+
+        driver.get("https://demoqa.com/radio-button");
+
+        List<WebElement> rButtons = driver.findElements(By.xpath("//input[@name='like']"));
+        for (WebElement rButton : rButtons) {
+            String selectedId = rButton.getAttribute("id");
+            if (!rButton.isEnabled()) {
+                System.out.println(selectedId + " is not enabled");
+                continue;
+            }
+            rButton.sendKeys(Keys.SPACE);
+            if (rButton.isSelected()) {
+                System.out.println("Selected Text : " + selectedId);
+            }
+            Assert.assertTrue(selectedId + " is selected", rButton.isSelected());
+        }
+    }
+
+    //3.yol
+    @Test
+    public void testRadioButton() {
+        // Go to URL: https://demoqa.com/radio-button
+        driver.get("https://demoqa.com/radio-button");
+        WebElement yes = driver.findElement(By.xpath("//label[contains(text(), 'Yes')]"));
+        WebElement impressive = driver.findElement(By.xpath("//label[contains(text(), 'Impressive')]"));
+        WebElement no = driver.findElement(By.xpath("//label[contains(text(), 'No')]"));
+        yes.click();
+        WebElement text = driver.findElement(By.xpath("//*[text()='You have selected ']"));
+        Assert.assertTrue(text.isDisplayed());
+        System.out.println("text = " + text.getText());
+        impressive.click();
+        System.out.println("text = " + text.getText());
+        no.click();
+        System.out.println("text = " + text.getText());
+    }
+}
+
+        // getAttribute() : Belirtilen bir Web Element’in attribute değerini alır.
+// Parametre olarak String kullanır ve sonucu olarak bir String değeri döndürür.
 
 
-}
-}

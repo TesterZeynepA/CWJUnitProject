@@ -27,6 +27,7 @@ public class Task11 {
     */
 
     static WebDriver driver;
+    static Select select;
 
     @BeforeClass
     public static void setup() {
@@ -75,7 +76,7 @@ public class Task11 {
 
         WebElement dropDown = driver.findElement(By.id("dropdown"));
 
-        Select select = new Select(dropDown);
+        select = new Select(dropDown);
 
         List<WebElement> selectList = select.getOptions();
 
@@ -91,7 +92,7 @@ public class Task11 {
 
         WebElement dropDown = driver.findElement(By.id("dropdown"));
 
-        Select select = new Select(dropDown);
+        select = new Select(dropDown);
 
         System.out.println("select.getFirstSelectedOption().getText() = " + select.getFirstSelectedOption().getText());
 
@@ -102,7 +103,7 @@ public class Task11 {
 
         WebElement dropDown = driver.findElement(By.id("dropdown"));
 
-        Select select = new Select(dropDown);
+        select = new Select(dropDown);
 
         List <WebElement> selectAllList = select.getOptions();
 
@@ -120,7 +121,7 @@ public class Task11 {
 
         WebElement dropDown = driver.findElement(By.id("oldSelectMenu"));
 
-        Select select = new Select(dropDown);
+        select = new Select(dropDown);
 
         List<WebElement> selectAllList = select.getOptions();
 
@@ -137,7 +138,7 @@ public class Task11 {
 
         WebElement dropDown = driver.findElement(By.id("dropdown"));
 
-        Select select = new Select(dropDown);
+        select = new Select(dropDown);
 
         select.selectByVisibleText("Option 1");
 
@@ -148,7 +149,7 @@ public class Task11 {
 
         WebElement dropDown = driver.findElement(By.id("dropdown"));
 
-        Select select = new Select(dropDown);
+        select = new Select(dropDown);
 
         select.selectByValue("2");
 
@@ -160,7 +161,7 @@ public class Task11 {
 
         WebElement dropDown = driver.findElement(By.id("dropdown"));
 
-        Select select = new Select(dropDown);
+        select = new Select(dropDown);
 
         select.selectByIndex(1);
 

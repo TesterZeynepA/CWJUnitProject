@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Task13 {
     //Go to URL: http://demo.automationtesting.in/Alerts.html
@@ -78,6 +79,33 @@ public class Task13 {
 
         Assert.assertEquals(expectedMessage, "Hello Zeynep How are you today");
 
+    }
+
+    //2.yol
+
+    @Test
+    public void alertTestList() throws InterruptedException {
+
+        driver.get("http://demo.automationtesting.in/Alerts.html");
+        List<WebElement> buttons= driver.findElements(By.xpath("//a[@class='analystic']"));
+        buttons.get(0).click();//clicked the alert with ok button
+        driver.findElement(By.xpath("//button[@class='btn btn-danger']")).click();
+
+        driver.switchTo().alert().accept();
+
+        buttons.get(1).click();//clicked the alert with ok and cancel button
+        driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();
+
+        driver.switchTo().alert().dismiss();
+
+        buttons.get(2).click();
+        driver.findElement(By.xpath("//button[@class='btn btn-info']")).click();
+        driver.switchTo().alert().sendKeys("Bootcamp");
+        driver.switchTo().alert().accept();
+
+        String alertMessage  = driver.findElement(By.xpath("//p[@id='demo1']")).getText();
+        Assert.assertEquals("Hello Bootcamp How are you today", alertMessage);
 
     }
+
 }

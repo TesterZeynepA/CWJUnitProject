@@ -33,7 +33,7 @@ public class Task09 {
 
     @AfterClass
     public static void tearDown(){
-        //driver.close();
+        driver.close();
     }//Close driver.
 
     @Test
@@ -42,13 +42,10 @@ public class Task09 {
         WebElement popUp = driver.findElement(By.xpath("//div[@id='adplus-anchor']"));
 
 
-        WebElement elements = driver.findElement(RelativeLocator.with(By.tagName("div")).above(popUp));
+        WebElement elements = driver.findElement(RelativeLocator.with(By.xpath("(//div[@class='card-up'])[1]")).near(popUp));
 
         elements.click();
         Thread.sleep(2000);
-
-        WebElement elements2= driver.findElement(By.xpath("(//div[@class='header-text'])[1]"));
-        elements2.click();
 
         WebElement checkbox = driver.findElement(By.xpath("//span[contains(text(),'Check')]"));
 
@@ -57,13 +54,13 @@ public class Task09 {
 
         WebElement homeCheckbox = driver.findElement(By.xpath("//*[@id='tree-node']/ol/li/span/label/span[1]"));
 
-        Assert.assertTrue(homeCheckbox.isEnabled());
+        Assert.assertFalse(homeCheckbox.isSelected());
 
        homeCheckbox.click();
 
         Thread.sleep(2000);
 
-        WebElement message = driver.findElement(By.xpath("//span[.='You have selected :']"));
+        WebElement message = driver.findElement(By.xpath("//*[.='You have selected :']"));
 
         Assert.assertTrue(message.isDisplayed());
 

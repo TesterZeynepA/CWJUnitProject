@@ -22,7 +22,7 @@ public class C29_Iframe {
     }
 
     @Test
-    public void basicAuthentication() throws InterruptedException {
+    public void test() throws InterruptedException {
 
        // WebElement content = driver.findElement(By.tagName("p"));
 

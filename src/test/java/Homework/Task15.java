@@ -46,6 +46,7 @@ public class Task15 {
         driver.switchTo().frame(firstIframe);
 
         driver.switchTo().defaultContent();
+        driver.close();
     }
 
     @Test
@@ -67,6 +68,7 @@ public class Task15 {
         driver.switchTo().frame(firstIframe);
 
         driver.switchTo().defaultContent();
+        driver.close();
     }
 
     }

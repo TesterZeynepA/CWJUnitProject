@@ -44,14 +44,17 @@ public class C35_WindowHandle3 extends TestBase {
        // Set<String> windowHandles = driver.getWindowHandles();
         //set uzerinde gezecegim bir objesi olmadigindan iterator kullancagiz
 
+        //window handle ler arasi gecis yapmamiz gerek
+        //set objesi olusturmaliyiz..
         Set<String> windowHandles = driver.getWindowHandles();
 
+        //set uzerinde gezecegim bir objesi olmadigindan iterator kullancagiz
         Iterator<String> itr= windowHandles.iterator();
 
-        while (itr.hasNext()){
-            String currentHandle=itr.next();
+        while (itr.hasNext()){//itr.hasNext() ifadesi , itr isimli bir nesnenin bir sonraki elemani olup olmadigini kontrol eder
+            String currentHandle=itr.next();//itr.next() ifadesi , i isimli bir nesnenin bir sonraki elemani bu degiskene atamaktadir.
             driver.switchTo().window(currentHandle);
-            System.out.println(driver.getWindowHandle());
+            System.out.println(driver.getWindowHandle());//3 farkli WH degeri gormeliyiz
 
             if (driver.getTitle().toLowerCase().contains("amazon")){
                 driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Amazon sekmesini buldun BRAVO");

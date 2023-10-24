@@ -6,6 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utilities.TestBase;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class Task20 extends TestBase {
@@ -26,15 +29,22 @@ public class Task20 extends TestBase {
         WebElement tabButton = driver.findElement(By.id("tabButton"));
         tabButton.click();
 
-        Set<String> handles = driver.getWindowHandles();
-        handles.remove(windowHandleMain);
-        String windowHandleTab = (String) handles.toArray()[0];
+       List<String> handles = new ArrayList<>(driver.getWindowHandles());
 
-        driver.switchTo().window(windowHandleTab);
+        for (int i = 0; i < handles.size(); i++) {
+
+            String windowHandleTab= handles.get(i);
+
+            if (!handles.get(i).equals(windowHandleMain)){
+
+                driver.switchTo().window(windowHandleTab);
+            }
+
+        }
 
         WebElement newTab = driver.findElement(By.id("sampleHeading"));
 
-        System.out.println(newTab.getText());
+        System.out.println("Tab Text= " + newTab.getText());
 
         driver.switchTo().window(windowHandleMain);
 
@@ -42,40 +52,48 @@ public class Task20 extends TestBase {
         WebElement windowButton = driver.findElement(By.id("windowButton"));
         windowButton.click();
 
-        Set<String> handles1 = driver.getWindowHandles();
-        handles1.remove(windowHandleMain);
-        handles1.remove(windowHandleTab);
-        String windowHandleWindow = (String) handles1.toArray()[0];
+        List<String> handles1= new ArrayList<>(driver.getWindowHandles());
+        for (int i = 0; i < handles1.size(); i++) {
+            String windowHandleWindow= handles1.get(i);
+            if (!handles1.get(i).equals(windowHandleMain)){
+                driver.switchTo().window(windowHandleWindow);
+                break;
+            }
 
-        driver.switchTo().window(windowHandleWindow);
+        }
 
         WebElement newWindow = driver.findElement(By.id("sampleHeading"));
 
-        System.out.println(newWindow.getText());
+        System.out.println("Window Text= " + newWindow.getText());
 
         driver.switchTo().window(windowHandleMain);
 
         WebElement windowMessage = driver.findElement(By.id("messageWindowButton"));
         windowMessage.click();
 
-        Set<String> handles2 = driver.getWindowHandles();
-        handles2.remove(windowHandleMain);
-        handles2.remove(windowHandleTab);
-        handles2.remove(windowHandleWindow);
 
-        String windowHandleMessage = (String) handles2.toArray()[0];
+        List<String> handlesList = new ArrayList<>(driver.getWindowHandles());;
 
+        for (int i = 0; i < handlesList.size(); i++) {
 
-        driver.switchTo().window(windowHandleMessage);
+           String windowHandleMessage= handlesList.get(i);
 
-        WebElement messageText = driver.findElement(By.tagName("body"));
+            if (!handlesList.get(i).equals(windowHandleMain)){
 
-        System.out.println(messageText.getText());
+                driver.switchTo().window(windowHandleMessage);
+                break;
+            }
+
+        }
+
+        WebElement text = driver.findElement(By.tagName("body"));
+        System.out.println("Window Message Text= " + text.getText());
+
+        Thread.sleep(2000);
 
         driver.switchTo().window(windowHandleMain);
 
         System.out.println(driver.getTitle());
-
 
 
     }

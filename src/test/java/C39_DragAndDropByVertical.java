@@ -1,4 +1,6 @@
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
 
@@ -13,13 +15,16 @@ public class C39_DragAndDropByVertical extends TestBase {
 
         Actions actions = new Actions(driver);
 
+        WebElement slider = driver.findElement(By.xpath("//span[@role='slider']"));
 
+        actions.dragAndDropBy(slider,0,-34).perform();
 
+        WebElement output = driver.findElement(By.cssSelector("span#sliderOutput2"));
+        System.out.println(output.getText());
 
+        actions.dragAndDropBy(slider,0,34).perform();
 
-
-
-
+        System.out.println(output.getText());
 
 
     }

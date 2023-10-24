@@ -41,11 +41,6 @@ public class C35_WindowHandle3 extends TestBase {
 
         //window handle ler arasi gecis yapmamiz gerek
         //set objesi olusturmaliyiz..
-       // Set<String> windowHandles = driver.getWindowHandles();
-        //set uzerinde gezecegim bir objesi olmadigindan iterator kullancagiz
-
-        //window handle ler arasi gecis yapmamiz gerek
-        //set objesi olusturmaliyiz..
         Set<String> windowHandles = driver.getWindowHandles();
 
         //set uzerinde gezecegim bir objesi olmadigindan iterator kullancagiz

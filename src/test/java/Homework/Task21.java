@@ -30,16 +30,9 @@ public class Task21 extends TestBase {
 
         driver.get("https://www.hepsiburada.com/");
 
-        WebElement cerezler = driver.findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']"));
-        cerezler.click();
-
-        Thread.sleep(5000);
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
-
        String windowHandleMain= driver.getWindowHandle();
 
-        WebElement searchBox = driver.findElement(By.xpath("//*[@class='searchBoxOld-P2GCKq3V7DvEXIgWsSCP']"));
+        WebElement searchBox = driver.findElement(By.xpath("//input[@class='theme-IYtZzqYPto8PhOx3ku3c']"));
 
         searchBox.sendKeys("iphone"+ Keys.ENTER);
 

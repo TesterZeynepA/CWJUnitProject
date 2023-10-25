@@ -23,16 +23,16 @@ public class Task23 extends TestBase {
         driver.get("http://demo.guru99.com/test/drag_drop.html");
 
 
-        WebElement first5Bin= driver.findElement(By.xpath("(//*[@data-id='2'])[1]"));
-        WebElement second5Bin= driver.findElement(By.xpath("(//*[@data-id='2'])[2]"));
-        WebElement bank= driver.findElement(By.xpath("//*[@data-id='5']"));
-        WebElement sales= driver.findElement(By.xpath("//*[@data-id='6']"));
+        WebElement first5Bin= driver.findElement(By.xpath("//li[@id='fourth'][1]"));
+        WebElement second5Bin= driver.findElement(By.xpath("//li[@id='fourth'][2]"));
+        WebElement bank= driver.findElement(By.id("credit2"));
+        WebElement sales= driver.findElement(By.id("credit1"));
 
 
-        WebElement debitAccount = driver.findElement(By.cssSelector("#shoppingCart1"));
-        WebElement debitAmount = driver.findElement(By.xpath("(//div[@id='shoppingCart4'])[1]"));
-        WebElement creditAccount = driver.findElement(By.cssSelector("#shoppingCart3"));
-        WebElement creditAmount = driver.findElement(By.xpath("(//div[@id='shoppingCart4'])[2]"));
+        WebElement debitAccount = driver.findElement(By.xpath("//ol[@id='bank']"));
+        WebElement debitAmount = driver.findElement(By.xpath("//ol[@id='amt7']"));
+        WebElement creditAccount = driver.findElement(By.xpath("//ol[@id='loan']"));
+        WebElement creditAmount = driver.findElement(By.xpath("//ol[@id='amt8']"));
 
 
         Actions actions = new Actions(driver);
@@ -42,7 +42,7 @@ public class Task23 extends TestBase {
                 .dragAndDrop(sales,creditAccount)
                 .dragAndDrop(first5Bin,debitAmount)
                 .dragAndDrop(second5Bin,creditAmount)
-                .build().perform();
+                .perform();
 
 
         WebElement perfect = driver.findElement(By.xpath("//*[contains(text(),'Perfect!')]"));

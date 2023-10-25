@@ -28,7 +28,7 @@ js.executeScript("arguments[0].scrollIntoView();",WebElement);
     //Double click on the blue square at the bottom of the page and then write the changed color.
 
     @Test
-    public void test(){
+    public void test() throws InterruptedException {
         driver.get("https://api.jquery.com/dblclick/");
 
         Actions actions = new Actions(driver);
@@ -46,6 +46,24 @@ js.executeScript("arguments[0].scrollIntoView();",WebElement);
         actions.doubleClick(doubleClickBtn).perform();
 
         System.out.println(doubleClickBtn.getCssValue("background-color"));
+
+        driver.switchTo().defaultContent();
+        Thread.sleep(3000);
+
+        WebElement searchBox = driver.findElement(By.xpath("//input[@name='s']"));
+
+        jse.executeScript("window.scrollTo(0,-document.body.scrollHeight)");
+
+        searchBox.sendKeys("JavaScript executor cooğğ iyi :))");
+
+        Thread.sleep(3000);
+
+        WebElement book = driver.findElement(By.xpath("(//img[contains(text(),'')])[3]"));
+
+        jse.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+
+        book.click();
+
     }
 
 }

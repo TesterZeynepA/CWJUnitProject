@@ -30,6 +30,12 @@ public class Task21 extends TestBase {
 
         driver.get("https://www.hepsiburada.com/");
 
+        WebElement cerezAyarları= driver.findElement(By.xpath("onetrust-pc-btn-handler"));
+        cerezAyarları.click();
+
+        WebElement tumunuKabulEt= driver.findElement(By.xpath("//button[@id='accept-recommended-btn-handler']"));
+        tumunuKabulEt.click();
+
        String windowHandleMain= driver.getWindowHandle();
 
         WebElement searchBox = driver.findElement(By.xpath("//input[@class='theme-IYtZzqYPto8PhOx3ku3c']"));

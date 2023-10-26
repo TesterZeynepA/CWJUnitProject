@@ -1,7 +1,14 @@
 package Homework;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
+
+import java.awt.*;
 
 public class Task25 extends TestBase {
     /*
@@ -13,7 +20,66 @@ Actions ile Arama kutusuna "ClarusWay" yazdırıp aratın
 */
 
     @Test
-    public void test(){
+    public void test() throws AWTException, InterruptedException {
+
+        driver.get("https://www.amazon.com/");
+
+        Robot robot = new Robot();
+        robot.mouseWheel(80);
+        Thread.sleep(5000);
+
+        WebElement backToTop = driver.findElement(By.xpath("//span[@class='navFooterBackToTopText']"));
+        backToTop.click();
+
+        Thread.sleep(5000);
+
+        WebElement footerLogo = driver.findElement(By.xpath("//div[@class='nav-logo-base nav-sprite']"));
+
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+        jse.executeScript("arguments[0].scrollIntoView();",footerLogo);
+
+        Thread.sleep(5000);
+
+        Actions actions = new Actions(driver);
+
+
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Thread.sleep(1000);
+
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Thread.sleep(1000);
+
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Thread.sleep(1000);
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Thread.sleep(1000);
+
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Thread.sleep(1000);
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Thread.sleep(1000);
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Thread.sleep(1000);
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Thread.sleep(1000);
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Thread.sleep(1000);
+
+        WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
+
+        actions.sendKeys("ClarusWay"+ Keys.ENTER)
+                .perform();
+        Thread.sleep(5000);
 
 
     }

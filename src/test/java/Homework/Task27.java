@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 public class Task27 extends TestBase {
     //Go to URL: https://opensource-demo.orangehrmlive.com/
     //Login page valid credentials.
+    //PIM,Configuration
     //Download sample CSV file.
     //Verify if the file downloaded successfully.
 
@@ -33,36 +34,23 @@ public class Task27 extends TestBase {
 
         loginButton.click();
 
-        WebElement myInfo= driver.findElement(By.xpath("(//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name'])[6]"));
+        WebElement PIM= driver.findElement(By.xpath("(//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name'])[2]"));
 
-        myInfo.click();
+        PIM.click();
 
-        Actions actions = new Actions(driver);
+        WebElement configuration= driver.findElement(By.xpath("(//span[@class='oxd-topbar-body-nav-tab-item'])[1]"));
+        configuration.click();
 
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        WebElement dataImport = driver.findElement(By.xpath("//a[.='Data Import']"));
+        dataImport.click();
 
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-
-        Thread.sleep(1000);
-
-        WebElement download= driver.findElement(By.xpath("//i [@class='oxd-icon bi-download']"));
+        WebElement download=driver.findElement(By.xpath("//a[@class='download-link']"));
         download.click();
 
+        Thread.sleep(2000);
+
         String path = System.getProperty("user.home")+System.getProperty("file.separator")+"Downloads"+
-                System.getProperty("file.separator")+"dcadhocimport.txt";
+                System.getProperty("file.separator")+"importData.csv";
 
         Assert.assertTrue(Files.exists(Paths.get(path)));
 

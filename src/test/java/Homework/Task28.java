@@ -26,6 +26,7 @@ public class Task28 extends TestBase {
         WebElement shopMenu= driver.findElement(By.linkText("Shop"));
         shopMenu.click();
 
+        driver.findElements(By.xpath("iframe"));
        driver.switchTo().frame("aswift_7");
        WebElement reklamClose= driver.findElement(By.cssSelector("#dismiss-button"));
        reklamClose.click();

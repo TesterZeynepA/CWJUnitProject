@@ -37,50 +37,17 @@ Actions ile Arama kutusuna "ClarusWay" yazdırıp aratın
 
         JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-        jse.executeScript("arguments[0].scrollIntoView();",footerLogo);
+        jse.executeScript("arguments[0].click();",footerLogo);
 
         Thread.sleep(5000);
 
         Actions actions = new Actions(driver);
-
-
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Thread.sleep(1000);
-
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Thread.sleep(1000);
-
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Thread.sleep(1000);
-
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Thread.sleep(1000);
 
         WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
 
         actions.sendKeys("ClarusWay"+ Keys.ENTER)
                 .perform();
         Thread.sleep(5000);
-
 
     }
 }

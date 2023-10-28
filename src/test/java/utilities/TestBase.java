@@ -39,11 +39,11 @@ public abstract class TestBase {
     @Before
     public void setup(){
 
-      // ChromeOptions options = new ChromeOptions();
-      // options.addArguments("disable-popup-blocking");
-      // driver = new ChromeDriver(options);
+       ChromeOptions options = new ChromeOptions();
+       options.addArguments("disable-popup-blocking");
+       driver = new ChromeDriver(options);
 
-       driver= new ChromeDriver();
+     //  driver= new ChromeDriver();
      // driver= new FirefoxDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));

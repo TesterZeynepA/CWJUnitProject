@@ -1,5 +1,6 @@
 package Homework;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -24,34 +25,74 @@ public class Task21 extends TestBase {
 // Arama sonucundaki 3.ürünün fiyatının, aynı ürünün sekmesindeki fiyatla aynı olduğunu doğrulayın
 // Ana sayfada iken 3 saniye bekleyip tüm sekmeleri kapatın
 
+    // https://www.hepsiburada.com/ adresine gidin
+    // Sayfanın windowhandle değerini alın.
+    // iphone kelimesini aratın
+    // Sonuçlar arasından 3.ürünün fiyatını alın
+    // Arama sonucunda ortaya çıkan tüm ürünleri teker teker tıklayın
+    // Tüm sekmelerin windowhandle değerlerini alt alta yazdırın
+    // Herbir ürün sekmesindeki title'ı yazdırın
+    // Arama sonucundaki 3.ürünün fiyatının, aynı ürünün sekmesindeki fiyatla aynı olduğunu doğrulayın
+    // Ana sayfada iken 3 saniye bekleyip tüm sekmeleri kapatın
+
+
+    static String product3priceOnPage;
 
     @Test
     public void test() throws InterruptedException {
-
+        // https://www.hepsiburada.com/ adresine gidin
         driver.get("https://www.hepsiburada.com/");
 
-        WebElement cerezAyarları= driver.findElement(By.xpath("onetrust-pc-btn-handler"));
-        cerezAyarları.click();
+        Thread.sleep(3000);
+        WebElement kabulEt = driver.findElement(By.xpath("//*[.='Kabul et']"));
+        kabulEt.click();
 
-        WebElement tumunuKabulEt= driver.findElement(By.xpath("//button[@id='accept-recommended-btn-handler']"));
-        tumunuKabulEt.click();
+        //Sayfanın windowhandle değerini bir değişkene atayın.
+        String mainWindowHandle = driver.getWindowHandle();
 
-       String windowHandleMain= driver.getWindowHandle();
+        //iphone kelimesini aratın
+        WebElement searchBox = driver.findElement(By.xpath("//div[@style='justify-content:flex-start']"));
+        searchBox.click();
+        WebElement inputSearchBox = driver.findElement(By.xpath("//input[@type='text']"));
+        inputSearchBox.sendKeys("iphone"+Keys.ENTER);
 
-        WebElement searchBox = driver.findElement(By.xpath("//input[@class='theme-IYtZzqYPto8PhOx3ku3c']"));
+        //Sonuçlar arasından 3.ürünün fiyatını alın
+        String product3name = driver.findElement(By.xpath("(//h3)[3]")).getText();
+        String product3price = driver.findElement(By.xpath("(//div[@data-test-id='price-current-price'])[3]")).getText();
+        String product3priceKurussuz = product3price.substring(0,6);
 
-        searchBox.sendKeys("iphone"+ Keys.ENTER);
+        //Arama sonucunda ortaya çıkan tüm ürünleri teker teker tıklayın
+        List<WebElement> productList = driver.findElements(By.xpath("//li[@type='comfort']"));
+        System.out.println(productList.size());
 
-        WebElement thirdElement = driver.findElement(By.xpath("(//div[@data-test-id='price-current-price'])[3]"));
-        System.out.println(thirdElement.getText());
+        for (int i=0; i<productList.size(); i++) {
+            productList.get(i).click();
+        }
 
-        List<WebElement> urunList = new ArrayList<>(driver.findElements(By.xpath("//div[@class='moria-ProductCard-jmtwOA emdq sexxexybruz sc-Axmtr gyRRhb']")));
+        //Tüm sekmelerin windowhandle değerlerini alt alta yazdırın
+        ArrayList<String> productsWindowHandlesList = new ArrayList<>(driver.getWindowHandles());
 
-        System.out.println(urunList.size());
+        for(int i=0; i<productsWindowHandlesList.size(); i++) {
+            System.out.println(productsWindowHandlesList.get(i));
+        }
 
+        //Herbir ürün sekmesindeki title'ı yazdırın
+        //Arama sonucundaki 3.ürünün fiyatının, aynı ürünün sekmesindeki fiyatla aynı olduğunu doğrulayın
+        for(int i=0; i<productsWindowHandlesList.size(); i++) {
+            driver.switchTo().window(productsWindowHandlesList.get(i));
+            System.out.println(driver.getTitle()+" ");
 
+            if(driver.getTitle().contains(product3name)){
+                product3priceOnPage = driver.findElement(By.xpath("//span[contains(@data-bind,'currentPriceBeforePoint')]")).getText();
+                break;
+            }
+        }
+
+        Assert.assertEquals(product3priceKurussuz, product3priceOnPage);
+
+        // Ana sayfada iken 3 saniye bekleyip tüm sekmeleri kapatın
+        driver.switchTo().window(mainWindowHandle);
+        Thread.sleep(3000);
+        driver.quit();
     }
-
-
-
 }

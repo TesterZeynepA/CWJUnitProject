@@ -28,6 +28,7 @@ public class Task19 extends TestBase {
 
         Assert.assertEquals(text.getText(),"Opening a new window");
         Thread.sleep(3000);
+        Assert.assertTrue(text.isDisplayed());
 
         Assert.assertEquals(driver.getTitle(),"The Internet");
         Thread.sleep(3000);
@@ -41,10 +42,8 @@ public class Task19 extends TestBase {
 
         driver.switchTo().window(yeniSekme);
         Thread.sleep(3000);
-        WebElement newWindow = driver.findElement(By.tagName("h3"));
-        Thread.sleep(3000);
 
-        Assert.assertEquals(newWindow.getText(),"New Window");
+        Assert.assertEquals("New Window", driver.getTitle());
 
         Thread.sleep(3000);
         driver.switchTo().window(firstWindowHandle);

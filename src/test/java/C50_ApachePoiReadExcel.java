@@ -3,6 +3,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class C50_ApachePoiReadExcel {
     //Workbook  Excel dosyamız.
@@ -59,10 +61,19 @@ public class C50_ApachePoiReadExcel {
         System.out.println((sheet1.getLastRowNum() + 1));
         System.out.println(sheet1.getPhysicalNumberOfRows());
 
+        Map<String,String> country_area= new HashMap<>();
+        for (int i = 0; i <= sheet1.getLastRowNum(); i++) {
+            String country = sheet1.getRow(i).getCell(0).toString();
+            String area =sheet1.getRow(i).getCell(1).toString();
+            country_area.put(country, area);
+
+        }
+
+        System.out.println(country_area);
+
+        System.out.println(country_area.containsKey("Türkiye"));
+
     }
-
-
-
 
 
 }

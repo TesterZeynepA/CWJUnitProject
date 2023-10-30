@@ -40,7 +40,7 @@ public abstract class TestBase {
     public void setup(){
 
        ChromeOptions options = new ChromeOptions();
-       options.addArguments("disable-popup-blocking");
+       options.addArguments("--disable-cookies");
        driver = new ChromeDriver(options);
 
      //  driver= new ChromeDriver();

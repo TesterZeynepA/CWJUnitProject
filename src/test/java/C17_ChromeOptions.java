@@ -30,7 +30,7 @@ static WebDriver driver;
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");//bu kod satırı  olmazsa default olarak kuçuk halde pencere acar.
         options.addArguments("headless");//headless modda çalıştırır.
-        options.addArguments("disable-popup-blocking");
+        options.addArguments("--disable-cookies");//çerezleri bloke eder
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("http://www.bestbuy.com");

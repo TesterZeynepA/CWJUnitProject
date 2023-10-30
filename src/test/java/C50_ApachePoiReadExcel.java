@@ -86,6 +86,10 @@ public class C50_ApachePoiReadExcel {
 
         // Verify that you have Türkiye on the list
         Assert.assertTrue(country_area.containsKey("Türkiye"));
+
+        //metotla yapalım
+
+        System.out.println(C51_ApachePoiGetData.getData("Sayfa1", 2, 1));
     }
 }
 /*

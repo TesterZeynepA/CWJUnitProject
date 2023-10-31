@@ -1,4 +1,6 @@
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utilities.TestBase;
 
 public class C55_WebTables extends TestBase {
@@ -22,9 +24,34 @@ public class C55_WebTables extends TestBase {
     @Test
     public void test(){
 
+        driver.get("http://demo.guru99.com/test/web-table-element.php");
 
+        WebElement webTable= driver.findElement(By.xpath("//table[@class='dataTable']"));
 
+        System.out.println(webTable.findElement(By.xpath(".//tr[3]")).getText());
 
+        System.out.println(webTable.findElement(By.xpath(".//tr[3]//td[2]")).getText());
 
+        int satirNumber = webTable.findElements(By.xpath(".//tr")).size();
+        int sutunNumber = webTable.findElements(By.xpath(".//tr[1]//td")).size();
+        for (int i = 1; i < + satirNumber ; i++) {
+
+            for (int j = 1; j <=sutunNumber; j++) {
+
+                String cellValue= webTable.findElement(By.xpath(".//tr["+ i +"]//td["+ j + "]")).getText();
+                System.out.print(cellValue + " ");
+
+            }
+
+            System.out.println();
+
+            System.out.println("-----------------------------------------------------");
+        }
+        System.out.println(getTableCellValue(webTable,7,3));
+    }
+    public String getTableCellValue (WebElement table, int row, int column){
+        By locator = By.xpath(".//tr[" + row + "]//td[" + column + "]");
+        WebElement cell = table.findElement(locator);
+        return cell.getText();
     }
 }

@@ -68,12 +68,7 @@ public class Task32 extends TestBase {
         System.out.println("------------------");
 
         //Print column 5 data in the table body
-
-        try {
-            System.out.println(table1.findElement(By.xpath(".//tr[5]")).getText());
-        } catch (Exception e) {
-            System.out.println("Tabloda 5. satır bulunmamaktadır!");
-        }
+        System.out.println(table1.findElement(By.xpath(".//tbody//tr//td[5]")).getText());
 
         System.out.println("------------------");
         //Write a method that accepts 2 parameters

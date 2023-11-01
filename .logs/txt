@@ -1,0 +1,9 @@
+2023-11-01 21:25:24 INFO  C57_Log4j_UseProperties:15 - bu bir info mesajidir
+2023-11-01 21:25:25 WARN  C57_Log4j_UseProperties:16 - bu bir warn mesajidir
+2023-11-01 21:25:25 ERROR C57_Log4j_UseProperties:17 - bu bir error mesajidir
+2023-11-01 21:25:25 FATAL C57_Log4j_UseProperties:18 - bu bir fatal mesajidir
+2023-11-01 21:26:54 DEBUG C57_Log4j_UseProperties:14 - bu bir debug mesajidir
+2023-11-01 21:26:54 INFO  C57_Log4j_UseProperties:15 - bu bir info mesajidir
+2023-11-01 21:26:54 WARN  C57_Log4j_UseProperties:16 - bu bir warn mesajidir
+2023-11-01 21:26:54 ERROR C57_Log4j_UseProperties:17 - bu bir error mesajidir
+2023-11-01 21:26:54 FATAL C57_Log4j_UseProperties:18 - bu bir fatal mesajidir

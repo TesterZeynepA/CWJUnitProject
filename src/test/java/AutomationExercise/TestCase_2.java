@@ -37,8 +37,6 @@ public class TestCase_2 extends TestBase {
 
         Assert.assertTrue(loginMessage.isDisplayed());
 
-        Faker faker = new Faker();
-
         WebElement loginEmail= driver.findElement(By.xpath("//input[@data-qa='login-email']"));
         loginEmail.sendKeys("azes1@gmail.com");
 

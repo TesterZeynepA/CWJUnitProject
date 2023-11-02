@@ -35,7 +35,7 @@ public class TestBaseReport {
 
         // Kaydedecegimiz dosya icin tarih stringi olusturuldu
         String currentDate = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss").format(new Date());
-        String filePath = System.getProperty("user.dir") + "/test-output/reports/testReport_" + currentDate + ".html";
+        String filePath = System.getProperty("user.dir") + "\\test-output\\reports\\testReport_" + currentDate + ".html";
         // HTML raporu olusturacak obje dosya yoluyla initialize edildi
         extentHtmlReporter = new ExtentSparkReporter(filePath);
 

@@ -59,6 +59,6 @@ public class TestBaseReport {
 
     @AfterClass
     public static void afterClass() {
-        //extentReports.flush();//arabellegi temizler
+        extentReports.flush();//arabellegi temizler
     }
 }

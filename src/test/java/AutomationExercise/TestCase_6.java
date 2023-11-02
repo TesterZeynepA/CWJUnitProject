@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
 
 public class TestCase_6 extends TestBase {
@@ -61,5 +62,20 @@ public class TestCase_6 extends TestBase {
 
         WebElement submitButton= driver.findElement(By.xpath("//input[@data-qa='submit-button']"));
         submitButton.sendKeys(Keys.SPACE);
+
+        driver.switchTo().alert().accept();
+
+        WebElement successMessage= driver.findElement(By.xpath("//div[@class='status alert alert-success']"));
+
+        Assert.assertTrue(successMessage.isDisplayed());
+
+        WebElement homePageBack=driver.findElement(By.xpath("//i[@class='fa fa-home']"));
+        homePageBack.click();
+
+        Assert.assertTrue(driver.findElement(By.xpath("//a[@style='color: orange;']")).isDisplayed());
+
+
+
+
     }
 }

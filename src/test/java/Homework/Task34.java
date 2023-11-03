@@ -3,6 +3,7 @@ package Homework;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -39,13 +40,19 @@ public class Task34 extends TestBaseReport {
     @Test
     public void test() throws InterruptedException {
 
+      // https://www.amazon.com.tr/ sitesi açılır.
         driver.get("https://www.amazon.com.tr/");
 
+      JavascriptExecutor jse = ((JavascriptExecutor) driver);
+
+      // Ana sayfanın açıldığı kontrol edilir.
         Assert.assertTrue(driver.getCurrentUrl().contains("amazon"));
 
+        //Çerez tercihlerinden Çerezleri kabul et seçilir.
         WebElement cerezKabul= driver.findElement(By.id("sp-cc-accept"));
         cerezKabul.sendKeys(Keys.SPACE);
 
+        //Siteye login olunur.
         WebElement girisYap= driver.findElement(By.id("nav-link-accountList-nav-line-1"));
         girisYap.click();
       WebElement inputMail= driver.findElement(By.id("ap_email"));
@@ -60,11 +67,15 @@ public class Task34 extends TestBaseReport {
       WebElement girisYap2= driver.findElement(By.id("signInSubmit"));
       girisYap2.sendKeys(Keys.SPACE);
 
+      // Login işlemi kontrol edilir.
       Assert.assertTrue(driver.findElement(By.id("nav-link-accountList-nav-line-1")).getText().contains("Zeynep"));
 
+      //Hesabım bölümünden “Virgosol Liste” isimli yeni bir liste oluşturulur.
       driver.findElement(By.xpath("//span[@class='nav-line-2 ']")).click();
 
-      driver.findElement(By.xpath("//h2[contains(text(),'Listeleriniz')]")).click();
+     WebElement listeleriniz= driver.findElement(By.xpath("(//span[@class='a-color-secondary'])[9]"));
+
+     listeleriniz.click();
 
       driver.findElement(By.xpath("//input[@class='a-button-input']")).sendKeys(Keys.ENTER);
 
@@ -77,65 +88,100 @@ public class Task34 extends TestBaseReport {
 
     Thread.sleep(10000);
 
+    // Arama butonu yanındaki kategoriler tabından bilgisayar seçilir.
+
       WebElement tumKategoriler= driver.findElement(By.id("searchDropdownBox"));
 
       Select select = new Select(tumKategoriler);
 
       select.selectByValue("search-alias=computers");
 
+      // Bilgisayar kategorisi seçildiği kontrol edilir.
       Assert.assertTrue(tumKategoriler.getText().contains("Bilgisayarlar"));
 
+      // Arama alanına msi yazılır ve arama yapılır.
       driver.findElement(By.id("twotabsearchtextbox")).sendKeys("msi"+ Keys.ENTER);
 
+      // Arama yapıldığı kontrol edilir.
       Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(),'Aranan ürün')]")).getText().contains("Aranan"));
 
+      //Arama sonuçları sayfasından 2. sayfa açılır.
       driver.findElement(By.xpath("(//a[@class='s-pagination-item s-pagination-button'])[1]")).click();
 
+      // 2'inci sayfanın açıldığı kontrol edilir.
       Assert.assertTrue(driver.getCurrentUrl().endsWith("pg_2"));
 
+      //Sayfadaki 2'inci ürün oluşturulan “Virgosol Liste” listesine eklenir.
       driver.findElement(By.xpath("(//div[@class='a-section a-spacing-base'])[2]")).click();
 
       driver.findElement(By.id("add-to-wishlist-button-submit")).click();
 
+      // 2'inci Ürünün listeye eklendiği kontrol edilir.
       WebElement urunEklendi= driver.findElement(By.xpath("//span[contains(text(),'1 ürün şuraya eklendi')]"));
 
       Assert.assertTrue(urunEklendi.getText().contains("eklendi"));
 
+      driver.findElement(By.xpath("//button[@data-action='a-popover-close']")).click();
+
+     //Hesabım  Alışveriş Listesi sayfasına gidilir.
       WebElement hesapVeListeler= driver.findElement(By.xpath("//span[contains(text(),'Hesap ve Listeler')]"));
 
-        Actions actions = new Actions(driver);
+      actions.sendKeys(Keys.PAGE_UP).perform();
+      actions.sendKeys(Keys.PAGE_UP).perform();
+      actions.sendKeys(Keys.PAGE_UP).perform();
+      actions.sendKeys(Keys.PAGE_UP).perform();
+      actions.sendKeys(Keys.PAGE_UP).perform();
+      actions.sendKeys(Keys.PAGE_UP).perform();
 
-        WebElement hesabım = driver.findElement(By.xpath("//span[contains(text(),'Hesabım')]"));
+      Thread.sleep(2000);
 
-        actions.moveToElement(hesapVeListeler).click(hesapVeListeler).click(hesabım)
-                .perform();
+      jse.executeScript("arguments[0].click();", hesapVeListeler);
 
-        driver.findElement(By.xpath("//h2[contains(text(),'Listeleriniz')]")).click();
+      Thread.sleep(10000);
 
-        Assert.assertTrue(driver.getCurrentUrl().contains("wishlist"));
+      WebElement listeler= driver.findElement(By.xpath("//img[@alt='Listeleriniz']"));
 
+     listeler.click();
 
-        driver.findElement(By.name("submit.deleteItem")).sendKeys(Keys.ENTER);
+     //“Alışveriş Listesi” sayfası açıldığı kontrol edilir.
+      Assert.assertTrue(driver.getCurrentUrl().contains("wishlist"));
 
-        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Silindi')]")).getText().contains("Silindi"));
+      //Eklenen ürün Virgosol Liste’sinden silinir.
+      driver.findElement(By.name("submit.deleteItem")).sendKeys(Keys.ENTER);
 
-        WebElement dahaFazlası= driver.findElement(By.id("overflow-menu-popover-trigger"));
+      //Silme işleminin gerçekleştiği kontrol edilir.
+      Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Silindi')]")).getText().contains("Silindi"));
 
-        WebElement listeyiYönet = driver.findElement(By.id("editYourList"));
+      //Virgosol Liste'si silinir.
+      WebElement dahaFazlası= driver.findElement(By.id("overflow-menu-popover-trigger"));
+      jse.executeScript("arguments[0].click();", dahaFazlası);
 
-        WebElement listeyiSil= driver.findElement(By.xpath("//span[contains(text(),'Listeyi sil')]"));
+      WebElement listeyiYönet = driver.findElement(By.id("editYourList"));
 
-        actions.moveToElement(dahaFazlası).click(listeyiYönet).click(listeyiSil)
-                .perform();
+      jse.executeScript("arguments[0].click();", listeyiYönet);
 
-        driver.findElement(By.name("submit.save")).click();
+      actions.sendKeys(Keys.PAGE_DOWN).perform();
+      actions.sendKeys(Keys.PAGE_DOWN).perform();
+      actions.sendKeys(Keys.PAGE_DOWN).perform();
 
-        actions.moveToElement(hesapVeListeler).
-                click(driver.findElement(By.xpath("//span[contains(text(),'Çıkış Yap')]")))
-                .perform();
+      WebElement listeyiSil= driver.findElement(By.xpath("//span[contains(text(),'Listeyi sil')]"));
 
-        Assert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Giriş yap')]")).getText().contains("Giriş yap"));
+      jse.executeScript("arguments[0].click();", listeyiSil);
 
+      jse.executeScript("arguments[0].click();",driver.findElement(By.name("submit.save")));
+
+      //Üye çıkış işlemi yapılır.
+      WebElement hesaplar= driver.findElement(By.id("nav-link-accountList-nav-line-1"));
+
+      actions.moveToElement(hesaplar)
+              .perform();
+
+      WebElement cikisYap= driver.findElement(By.xpath("//span[contains(text(),'Çıkış Yap')]"));
+
+      jse.executeScript("arguments[0].click();",cikisYap );
+
+      //Çıkış işleminin yapıldığı kontrol edilir.
+      Assert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Giriş yap')]")).getText().contains("Giriş yap"));
 
 
     }

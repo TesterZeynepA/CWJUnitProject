@@ -23,7 +23,6 @@ public class Task30 {
     //Close the file.
     //Close the workbook.
 
-
 //dosya bu clasttan once 3. sutun temiz olmalı.. ilk calıstırıldıgında yazar..
 // 2. kez calıstırılınca uzerine yazar, hata vermez
 

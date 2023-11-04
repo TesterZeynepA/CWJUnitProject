@@ -62,7 +62,7 @@ public class Task34 extends TestBaseReport {
       devemEt.sendKeys(Keys.SPACE);
 
       WebElement sifre= driver.findElement(By.id("ap_password"));
-      sifre.sendKeys("AzEs1722");
+      sifre.sendKeys("İz1212");
 
       WebElement girisYap2= driver.findElement(By.id("signInSubmit"));
       girisYap2.sendKeys(Keys.SPACE);

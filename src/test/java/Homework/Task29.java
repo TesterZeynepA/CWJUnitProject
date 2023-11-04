@@ -20,9 +20,5 @@ public class Task29 extends TestBase {
 
         fileUpload.sendKeys(path);
 
-
-
-
-
     }
 }

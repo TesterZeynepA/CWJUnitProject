@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Task31 extends TestBase {
+
     // Go to n11.com.
     // Take Full Page Screenshot.
     // Spesific WebElement ScreenShot (webelement is up to you)

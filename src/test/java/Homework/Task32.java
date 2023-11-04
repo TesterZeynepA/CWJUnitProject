@@ -34,7 +34,6 @@ public class Task32 extends TestBase {
 
                 String cellValue = table1.findElement(By.xpath(".//tr[" + i + "]//td[" + j + "]")).getText();
                 System.out.print(cellValue + " ");
-
             }
             System.out.println();
             System.out.println("-----------------------------------------------------");

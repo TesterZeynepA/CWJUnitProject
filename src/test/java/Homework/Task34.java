@@ -125,64 +125,69 @@ public class Task34 extends TestBaseReport {
 
       driver.findElement(By.id("add-to-wishlist-button-submit")).click();
 
-      // 2'inci Ürünün listeye eklendiği kontrol edilir.
-      WebElement urunEklendi= driver.findElement(By.xpath("//span[contains(text(),'1 ürün şuraya eklendi')]"));
+        //2'inci Ürünün listeye eklendiği kontrol edilir.
+        Assert.assertTrue(driver.findElement(By.xpath("//*[.='1 ürün şuraya eklendi:']")).isDisplayed());
 
-      Assert.assertTrue(urunEklendi.getText().contains("eklendi"));
+//Hesabım  Alışveriş Listesi sayfasına gidilir.
+        WebElement hesapVeListeler= driver.findElement(By.xpath("//span[contains(text(),'Hesap ve Listeler')]"));
 
-      driver.findElement(By.xpath("//button[@data-action='a-popover-close']")).click();
+        actions.sendKeys(Keys.PAGE_UP).perform();
+        actions.sendKeys(Keys.PAGE_UP).perform();
+        actions.sendKeys(Keys.PAGE_UP).perform();
+        actions.sendKeys(Keys.PAGE_UP).perform();
+        actions.sendKeys(Keys.PAGE_UP).perform();
+        actions.sendKeys(Keys.PAGE_UP).perform();
 
-     //Hesabım  Virgosol Liste sayfasına gidilir.
-      WebElement hesapVeListeler= driver.findElement(By.xpath("//span[contains(text(),'Hesap ve Listeler')]"));
+        Thread.sleep(2000);
 
+        jse.executeScript("arguments[0].click();", hesapVeListeler);
 
-      jse.executeScript("arguments[0].click();", hesapVeListeler);
+        Thread.sleep(10000);
 
+        WebElement listeler= driver.findElement(By.xpath("//img[@alt='Listeleriniz']"));
 
-      WebElement listeler= driver.findElement(By.xpath("//img[@alt='Listeleriniz']"));
+        listeler.click();
 
-     listeler.click();
+//“Virgosol Listesi” sayfası açıldığı kontrol edilir.
+        Assert.assertTrue(driver.findElement(By.id("profile-list-name")).getText().toLowerCase().contains("virgosol"));
 
-     //“Virgosol Liste” sayfası açıldığı kontrol edilir.
-      Assert.assertTrue(driver.getCurrentUrl().contains("wishlist"));
+//Eklenen ürün Virgosol Liste’sinden silinir.
+        driver.findElement(By.name("submit.deleteItem")).click();
+//Silme işleminin gerçekleştiği kontrol edilir.
+        Assert.assertTrue(driver.findElement(By.xpath("(//div[.='Silindi'])[2]")).isDisplayed());
 
-      //Eklenen ürün Virgosol Liste’sinden silinir.
-      driver.findElement(By.name("submit.deleteItem")).sendKeys(Keys.ENTER);
+//Virgosol Liste'si silinir.
+        WebElement dahaFazlası= driver.findElement(By.id("overflow-menu-popover-trigger"));
+        jse.executeScript("arguments[0].click();", dahaFazlası);
 
-      //Silme işleminin gerçekleştiği kontrol edilir.
-      Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Silindi')]")).isDisplayed());
+        WebElement listeyiYönet = driver.findElement(By.id("editYourList"));
 
-      //Virgosol Liste'si silinir.
-      WebElement dahaFazlası= driver.findElement(By.id("overflow-menu-popover-trigger"));
-      jse.executeScript("arguments[0].click();", dahaFazlası);
+        jse.executeScript("arguments[0].click();", listeyiYönet);
 
-      WebElement listeyiYönet = driver.findElement(By.id("editYourList"));
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
 
-      jse.executeScript("arguments[0].click();", listeyiYönet);
+        WebElement listeyiSil= driver.findElement(By.xpath("//span[contains(text(),'Listeyi sil')]"));
 
-      actions.sendKeys(Keys.PAGE_DOWN).perform();
-      actions.sendKeys(Keys.PAGE_DOWN).perform();
-      actions.sendKeys(Keys.PAGE_DOWN).perform();
+        jse.executeScript("arguments[0].click();", listeyiSil);
 
-      WebElement listeyiSil= driver.findElement(By.xpath("//span[contains(text(),'Listeyi sil')]"));
+        jse.executeScript("arguments[0].click();",driver.findElement(By.name("submit.save")));
 
-      jse.executeScript("arguments[0].click();", listeyiSil);
+        //Üye çıkış işlemi yapılır.
+        WebElement hesaplar= driver.findElement(By.id("nav-link-accountList-nav-line-1"));
 
-      jse.executeScript("arguments[0].click();",driver.findElement(By.name("submit.save")));
+        actions.moveToElement(hesaplar)
+                .perform();
 
-      //Üye çıkış işlemi yapılır.
-      WebElement hesaplar= driver.findElement(By.id("nav-link-accountList-nav-line-1"));
+        WebElement cikisYap= driver.findElement(By.xpath("//span[contains(text(),'Çıkış Yap')]"));
 
-      actions.moveToElement(hesaplar)
-              .perform();
+        jse.executeScript("arguments[0].click();",cikisYap );
 
-      WebElement cikisYap= driver.findElement(By.xpath("//span[contains(text(),'Çıkış Yap')]"));
+        //Çıkış işleminin yapıldığı kontrol edilir.
+        Assert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Giriş yap')]")).getText().contains("Giriş yap"));
 
-      jse.executeScript("arguments[0].click();",cikisYap );
-
-      //Çıkış işleminin yapıldığı kontrol edilir.
-      Assert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Giriş yap')]")).getText().contains("Giriş yap"));
-
-
+//Not: Virgosol Liste'si task yeniden çalıştırıldığında sorun olmaması için silinmektedir.
     }
 }
+

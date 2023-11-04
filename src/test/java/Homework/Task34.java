@@ -7,8 +7,13 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.TestBaseReport;
+
+import java.time.Duration;
 
 public class Task34 extends TestBaseReport {
       /*
@@ -86,9 +91,13 @@ public class Task34 extends TestBaseReport {
 
       driver.findElement(By.xpath("(//input[@class='a-button-input a-declarative'])[3]")).sendKeys(Keys.ENTER);
 
-    Thread.sleep(10000);
-
     // Arama butonu yanındaki kategoriler tabından bilgisayar seçilir.
+
+        driver.navigate().refresh();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='nav-search-facade']")));
 
       WebElement tumKategoriler= driver.findElement(By.id("searchDropdownBox"));
 
@@ -97,7 +106,7 @@ public class Task34 extends TestBaseReport {
       select.selectByValue("search-alias=computers");
 
       // Bilgisayar kategorisi seçildiği kontrol edilir.
-      Assert.assertTrue(tumKategoriler.getText().contains("Bilgisayarlar"));
+      Assert.assertTrue(select.getFirstSelectedOption().getText().contains("Bilgisayarlar"));
 
       // Arama alanına msi yazılır ve arama yapılır.
       driver.findElement(By.id("twotabsearchtextbox")).sendKeys("msi"+ Keys.ENTER);
@@ -123,34 +132,25 @@ public class Task34 extends TestBaseReport {
 
       driver.findElement(By.xpath("//button[@data-action='a-popover-close']")).click();
 
-     //Hesabım  Alışveriş Listesi sayfasına gidilir.
+     //Hesabım  Virgosol Liste sayfasına gidilir.
       WebElement hesapVeListeler= driver.findElement(By.xpath("//span[contains(text(),'Hesap ve Listeler')]"));
 
-      actions.sendKeys(Keys.PAGE_UP).perform();
-      actions.sendKeys(Keys.PAGE_UP).perform();
-      actions.sendKeys(Keys.PAGE_UP).perform();
-      actions.sendKeys(Keys.PAGE_UP).perform();
-      actions.sendKeys(Keys.PAGE_UP).perform();
-      actions.sendKeys(Keys.PAGE_UP).perform();
-
-      Thread.sleep(2000);
 
       jse.executeScript("arguments[0].click();", hesapVeListeler);
 
-      Thread.sleep(10000);
 
       WebElement listeler= driver.findElement(By.xpath("//img[@alt='Listeleriniz']"));
 
      listeler.click();
 
-     //“Alışveriş Listesi” sayfası açıldığı kontrol edilir.
+     //“Virgosol Liste” sayfası açıldığı kontrol edilir.
       Assert.assertTrue(driver.getCurrentUrl().contains("wishlist"));
 
       //Eklenen ürün Virgosol Liste’sinden silinir.
       driver.findElement(By.name("submit.deleteItem")).sendKeys(Keys.ENTER);
 
       //Silme işleminin gerçekleştiği kontrol edilir.
-      Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Silindi')]")).getText().contains("Silindi"));
+      Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Silindi')]")).isDisplayed());
 
       //Virgosol Liste'si silinir.
       WebElement dahaFazlası= driver.findElement(By.id("overflow-menu-popover-trigger"));

@@ -29,5 +29,11 @@ public class TestCase_8 extends TestBase {
         WebElement homePage = driver.findElement(By.xpath("//i[@class='fa fa-home']"));
 
         Assert.assertTrue(homePage.isDisplayed());
+
+        WebElement products= driver.findElement(By.xpath("//i[@class='material-icons card_travel']"));
+        products.click();
+
+        Assert.assertTrue(driver.findElement(By.xpath("//h2[@class='title text-center']")).getText().contains("ALL PRODUCTS"));
+
     }
 }

@@ -1,5 +1,9 @@
 package AutomationExercise;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utilities.TestBase;
 
 public class TestCase_8 extends TestBase {
@@ -16,4 +20,14 @@ public class TestCase_8 extends TestBase {
       8. User is landed to product detail page
       9. Verify that detail detail is visible: product name, category, price, availability, condition, brand
      */
+
+    @Test
+    public void test(){
+
+        driver.get("http://automationexercise.com");
+
+        WebElement homePage = driver.findElement(By.xpath("//i[@class='fa fa-home']"));
+
+        Assert.assertTrue(homePage.isDisplayed());
+    }
 }

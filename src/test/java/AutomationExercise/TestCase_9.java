@@ -30,14 +30,22 @@ public class TestCase_9 extends TestBase {
         WebElement products= driver.findElement(By.xpath("//i[@class='material-icons card_travel']"));
         products.click();
 
-        driver.switchTo().frame("aswift_6");
-
-        driver.switchTo().frame("ad_iframe");
-
-        WebElement reklam= driver.findElement(By.id("dismiss-button"));
-
-        reklam.click();
+      //  driver.switchTo().frame("aswift_6");
+//
+      //  driver.switchTo().frame("ad_iframe");
+//
+      //  WebElement reklam= driver.findElement(By.id("dismiss-button"));
+//
+      //  reklam.click();
         Assert.assertTrue(driver.findElement(By.xpath("//h2[@class='title text-center']")).getText().contains("ALL PRODUCTS"));
+
+        driver.findElement(By.xpath("//input[@id='search_product']")).sendKeys("Men Tshirt");
+        driver.findElement(By.xpath("//i[@class='fa fa-search']")).click();
+
+        Assert.assertTrue(driver.findElement(By.xpath("//h2[@class='title text-center']")).isDisplayed());
+
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@class='productinfo text-center']")).getText().contains("Men Tshirt"));
+
 
 
 

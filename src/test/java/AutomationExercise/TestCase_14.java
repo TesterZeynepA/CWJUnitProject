@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import utilities.TestBase;
 
 public class TestCase_14 extends TestBase {
@@ -53,6 +54,58 @@ public class TestCase_14 extends TestBase {
         actions.sendKeys(Keys.PAGE_UP).perform();
 
         driver.findElement(By.xpath("(//*[contains(text(),'Cart')])[1]")).click();
+
+        WebElement shoppingCart = driver.findElement(By.xpath("//li[contains(text(),'Shopping Cart')]"));
+        Assert.assertTrue(shoppingCart.isDisplayed());
+
+        driver.findElement(By.xpath("//a[@class='btn btn-default check_out']")).click();
+
+        driver.findElement(By.xpath("//u[contains(text(),'Register / Login')]")).click();
+
+        driver.findElement(By.xpath("//input[@data-qa='signup-name']")).sendKeys("Azes");
+        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys("azes@gmail.com");
+
+        driver.findElement(By.xpath("//button[@data-qa='signup-button']")).click();
+
+        driver.findElement(By.xpath("//input[@data-qa='password']")).sendKeys("12345");
+
+        driver.findElement(By.xpath("//input[@data-qa='first_name']")).sendKeys("Azra");
+
+        driver.findElement(By.xpath("//input[@data-qa='last_name']")).sendKeys("Aytop");
+
+        driver.findElement(By.xpath("//input[@data-qa='address']")).sendKeys("yedigöze Köyü");
+
+        Select select= new Select(driver.findElement(By.id("country")));
+
+        select.selectByValue("India");
+
+        driver.findElement(By.xpath("//input[@data-qa='state']")).sendKeys("available");
+
+        driver.findElement(By.xpath("//input[@data-qa='city']")).sendKeys("Istanbul");
+
+        driver.findElement(By.xpath("//input[@data-qa='zipcode']")).sendKeys("34000");
+
+        driver.findElement(By.xpath("//input[@data-qa='mobile_number']")).sendKeys("54232651");
+
+        driver.findElement(By.xpath("//button[@data-qa='create-account']")).submit();
+
+        Assert.assertTrue(driver.findElement(By.xpath("//b[contains(text(),'Account Created!')]")).isDisplayed());
+
+        driver.findElement(By.xpath("//a[@data-qa='continue-button']")).click();
+
+        Assert.assertTrue(driver.findElement(By.xpath("//b[contains(text(),'Azes')]")).isDisplayed());
+
+        driver.findElement(By.xpath("(//*[contains(text(),' Cart')])[1]")).click();
+
+        driver.findElement(By.xpath("//a[@class='btn btn-default check_out']")).click();
+
+        Assert.assertTrue(driver.findElement(By.xpath("//h2[contains(text(),'Address Details')]")).isDisplayed());
+
+        Assert.assertTrue(driver.findElement(By.xpath("//h2[contains(text(),'Review Your Order')]")).isDisplayed());
+
+
+
+
 
 
 

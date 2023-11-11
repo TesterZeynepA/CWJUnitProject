@@ -103,6 +103,31 @@ public class TestCase_14 extends TestBase {
 
         Assert.assertTrue(driver.findElement(By.xpath("//h2[contains(text(),'Review Your Order')]")).isDisplayed());
 
+        driver.findElement(By.xpath("//textarea[@name='message']")).sendKeys("Bu ürün çok güzel");
+
+        driver.findElement(By.xpath("//a[contains(text(),'Place Order')]")).click();
+
+        driver.findElement(By.xpath("//input[@data-qa='name-on-card']")).sendKeys("AZRA AYTOP");
+
+        driver.findElement(By.xpath("//input[@data-qa='card-number']")).sendKeys("122365478");
+
+        driver.findElement(By.xpath("//input[@data-qa='cvc']")).sendKeys("123");
+
+        driver.findElement(By.xpath("//input[@data-qa='expiry-month']")).sendKeys("11");
+
+        driver.findElement(By.xpath("//input[@data-qa='expiry-year']")).sendKeys("2026");
+
+        driver.findElement(By.xpath("//button[@data-qa='pay-button']")).click();
+
+        Assert.assertTrue(driver.findElement(By.xpath("(//div[@class='alert-success alert'])[1]")).isDisplayed());
+
+        driver.findElement(By.xpath("//*[contains(text(),' Delete Account')]")).click();
+
+        Assert.assertTrue(driver.findElement(By.xpath("//b[contains(text(),'Account Deleted!')]")).isDisplayed());
+
+        driver.findElement(By.xpath("//a[@data-qa='continue-button']")).click();
+
+
 
 
 

@@ -63,7 +63,7 @@ public class TestCase_14 extends TestBase {
         driver.findElement(By.xpath("//u[contains(text(),'Register / Login')]")).click();
 
         driver.findElement(By.xpath("//input[@data-qa='signup-name']")).sendKeys("Azes");
-        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys("azes@gmail.com");
+        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys("azes2@gmail.com");
 
         driver.findElement(By.xpath("//button[@data-qa='signup-button']")).click();
 

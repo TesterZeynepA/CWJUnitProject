@@ -63,7 +63,7 @@ public class TestCase_14 extends TestBase {
         driver.findElement(By.xpath("//u[contains(text(),'Register / Login')]")).click();
 
         driver.findElement(By.xpath("//input[@data-qa='signup-name']")).sendKeys("Azes");
-        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys("azes2@gmail.com");
+        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys("azes3@gmail.com");
 
         driver.findElement(By.xpath("//button[@data-qa='signup-button']")).click();
 
@@ -106,6 +106,12 @@ public class TestCase_14 extends TestBase {
         driver.findElement(By.xpath("//textarea[@name='message']")).sendKeys("Bu ürün çok güzel");
 
         driver.findElement(By.xpath("//a[contains(text(),'Place Order')]")).click();
+
+        driver.switchTo().frame("aswift_1");
+
+        driver.switchTo().frame("ad_iframe");
+
+        driver.findElement(By.xpath("//span[@class='ns-jr688-e-18']")).click();
 
         driver.findElement(By.xpath("//input[@data-qa='name-on-card']")).sendKeys("AZRA AYTOP");
 

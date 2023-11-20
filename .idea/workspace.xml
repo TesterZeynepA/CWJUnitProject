@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92131688-afa7-47c2-9c80-3ac37150a2c1" name="Changes" comment="CWJUnit Project 12.11.2023">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AutomationExercise/TestCase_14.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AutomationExercise/TestCase_14.java" afterDir="false" />
-    </list>
+    <list default="true" id="92131688-afa7-47c2-9c80-3ac37150a2c1" name="Changes" comment="CWJUnit Project 12.11.2023" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +52,7 @@
       <recent name="C:\Users\zeyne\IdeaProjects\CWJUnitProject\src\test\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestCase_14">
+  <component name="RunManager" selected="JUnit.TestCase_14.test">
     <configuration name="TestCase_11.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CWJUnitProject" />
       <extension name="coverage">
@@ -143,8 +134,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestCase_14" />
         <item itemvalue="JUnit.TestCase_14.test" />
+        <item itemvalue="JUnit.TestCase_14" />
         <item itemvalue="JUnit.TestCase_13.test" />
         <item itemvalue="JUnit.TestCase_12.test" />
         <item itemvalue="JUnit.TestCase_11.test" />
@@ -159,13 +150,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1696964745756</updated>
-    </task>
-    <task id="LOCAL-00057" summary="CWJUnit Project 30.10.2023">
-      <created>1698689763140</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1698689763141</updated>
     </task>
     <task id="LOCAL-00058" summary="CWJUnit Project 30.10.2023">
       <created>1698694146285</created>
@@ -503,7 +487,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699885727296</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="CWJUnit Project 12.11.2023">
+      <created>1700329127979</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1700329127982</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

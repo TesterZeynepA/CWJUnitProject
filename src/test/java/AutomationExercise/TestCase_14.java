@@ -107,11 +107,11 @@ public class TestCase_14 extends TestBase {
 
         driver.findElement(By.xpath("//a[contains(text(),'Place Order')]")).click();
 
-        driver.switchTo().frame("aswift_1");
+     //  driver.switchTo().frame("aswift_1");
 
-        driver.switchTo().frame("ad_iframe");
+     //  driver.switchTo().frame("ad_iframe");
 
-        driver.findElement(By.xpath("//span[@class='ns-jr688-e-18']")).click();
+     //  driver.findElement(By.xpath("//span[@class='ns-jr688-e-18']")).click();
 
         driver.findElement(By.xpath("//input[@data-qa='name-on-card']")).sendKeys("AZRA AYTOP");
 
